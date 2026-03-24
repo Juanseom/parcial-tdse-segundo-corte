@@ -16,7 +16,6 @@ public class MathController {
 	public Map<String, String> health() {
 		return Map.of("status", "ok", "service", "math-service");
 	}
-
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(IllegalArgumentException.class)
 	public Map<String, String> handleIllegalArgument(IllegalArgumentException ex) {
