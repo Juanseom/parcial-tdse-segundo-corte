@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parte 1 - Servicio Matematico</title>
+</head>
+<body>
+<h1>Conjetura de Collatz</h1>
+<p>Esta primera parte consume directamente el servicio matematico local.</p>
+
+<form>
+    <label for="value">Numero entero positivo:</label><br>
+    <input type="number" id="value" name="value" min="1" value="13"><br><br>
+    <input type="button" value="Calcular" onclick="loadCollatz()">
+</form>
+
+<pre id="response"></pre>
+
+<script>
+    function loadCollatz() {
+        const value = document.getElementById("value").value;
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onload = function () {
+            document.getElementById("response").textContent = this.responseText;
+        };
+
+        xhttp.open("GET", "/math/collatz?value=" + encodeURIComponent(value));
+        xhttp.send();
+    }
+</script>
+</body>
+</html>
+
