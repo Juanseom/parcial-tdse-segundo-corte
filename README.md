@@ -1,7 +1,5 @@
 # Parcial TDSE - Secuencia de Lucas
 
-Proyecto sencillo en Spring Boot para calcular la secuencia de Lucas con arquitectura de microservicios.
-
 ## Diseño
 
 - Se implemento un servicio backend que calcula la secuencia de Lucas.
@@ -28,7 +26,7 @@ Proyecto sencillo en Spring Boot para calcular la secuencia de Lucas con arquite
 Se incluyo un cliente web minimo en `src/main/resources/index.html`.
 Hace llamadas asincronas al proxy con botones para GET y POST.
 
-## Nota de despliegue
+## Despliegue
 
 El proxy usa la variable de entorno `BACKEND_URLS` para definir los backends en round-robin.
 Acepta valores separados por coma (host:puerto o URL completa).
