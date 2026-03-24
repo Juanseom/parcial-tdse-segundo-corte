@@ -30,3 +30,5 @@ Hace llamadas asincronas al proxy con botones para GET y POST.
 
 El proxy usa la variable de entorno `BACKEND_URLS` para definir los backends en round-robin.
 Acepta valores separados por coma (host:puerto o URL completa).
+
+Video: https://youtu.be/NfC7kwac1Qs
