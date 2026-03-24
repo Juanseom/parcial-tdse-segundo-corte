@@ -2,6 +2,7 @@ package edu.eci.tdse.parcial;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -59,9 +60,12 @@ public class ProxyService {
             }
             reader.close();
 
-            return ResponseEntity.status(statusCode).body(response.toString());
+            return ResponseEntity.status(statusCode)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(response.toString());
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
+                    .contentType(MediaType.APPLICATION_JSON)
                     .body("{\"error\":\"No se pudo conectar con backend\"}");
         }
     }
@@ -79,7 +83,7 @@ public class ProxyService {
             for (String part : parts) {
                 String trimmed = part.trim();
                 if (!trimmed.isEmpty()) {
-                    urls.add(trimmed);
+                    urls.add(normalizeBackendUrl(trimmed));
                 }
             }
         }
@@ -89,5 +93,23 @@ public class ProxyService {
         }
 
         return urls;
+    }
+
+    private String normalizeBackendUrl(String rawUrl) {
+        String url = rawUrl;
+
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            url = "http://" + url;
+        }
+
+        if (url.endsWith("/api/lucasseq")) {
+            return url;
+        }
+
+        if (url.endsWith("/")) {
+            return url + "api/lucasseq";
+        }
+
+        return url + "/api/lucasseq";
     }
 }
