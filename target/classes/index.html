@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secuencia de Lucas</title>
+</head>
+<body>
+<h1>Secuencia de Lucas</h1>
+<p>Cliente web minimo que consume el proxy con peticion asincrona.</p>
+
+<form>
+    <label for="value">Indice n (n >= 0):</label><br>
+    <input type="number" id="value" name="value" min="0" value="13"><br><br>
+    <input type="button" value="Calcular con GET" onclick="loadLucasGet()">
+    <input type="button" value="Calcular con POST" onclick="loadLucasPost()">
+</form>
+
+<pre id="response"></pre>
+
+<script>
+    function loadLucasGet() {
+        const value = document.getElementById("value").value;
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onload = function () {
+            document.getElementById("response").textContent = this.responseText;
+        };
+
+        xhttp.open("GET", "/lucasseq?value=" + encodeURIComponent(value));
+        xhttp.send();
+    }
+
+    function loadLucasPost() {
+        const value = document.getElementById("value").value;
+        fetch("/lucasseq?value=" + encodeURIComponent(value), {method: "POST"})
+            .then(response => response.text())
+            .then(text => document.getElementById("response").textContent = text);
+    }
+</script>
+</body>
+</html>
+

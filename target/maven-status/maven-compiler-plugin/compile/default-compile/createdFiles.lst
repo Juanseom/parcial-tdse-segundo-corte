@@ -1,6 +1,6 @@
-edu/eci/tdse/parcial/HttpConnectionExample.class
-edu/eci/tdse/parcial/ProxyService.class
-edu/eci/tdse/parcial/RestServiceApplication.class
-edu/eci/tdse/parcial/MathController.class
-edu/eci/tdse/parcial/MathResponse.class
-edu/eci/tdse/parcial/MathService.class
+edu\eci\tdse\parcial\MathResponse.class
+edu\eci\tdse\parcial\HttpConnectionExample.class
+edu\eci\tdse\parcial\ProxyService.class
+edu\eci\tdse\parcial\RestServiceApplication.class
+edu\eci\tdse\parcial\MathService.class
+edu\eci\tdse\parcial\MathController.class
